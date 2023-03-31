@@ -45,7 +45,7 @@ label start:
     scene bg arcade
     show eileen happy
 
-    e "Hello, everyone, and welcome to the big annoucement!"
+    e "Hello, everyone, and welcome to the big announcement!"
 
     e "Today, I'm announcing the Next-Generation Enhancement System, which we're calling NGES for short."
 
