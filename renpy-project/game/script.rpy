@@ -5,10 +5,7 @@
 
 define e = Character("Eileen")
 
-
-label main_menu:
-    return
-
+define config.allow_skipping = False
 
 screen nges_example():
     default d = nges.NGES("game.nes")
@@ -56,15 +53,11 @@ label start:
 
     e "The tutorial has an example of writing minigames in Python - but that's not the only way to do it. At least, not anymore."
 
-    e "The next-generation enhancement system lets you run minigames inside a virtual machine inside Ren'Py."
+    e "The next-generation enhancement system is a virtual machine that lets you run some of the most popular minigames ever created."
 
-    e "This virtual machine uses an 8 bit bytecode that can be targeted by a variety of languages and tools."
+    e "This virtual machine uses an 8-bit bytecode that gives access to memory-mapped registers that can display tiles, sprites, and synthesize audio."
 
-    e "The virtual machine uses memory-mapped I/O to access a functional unit that can display tile grids (like maps). It also emulates sprites you can move around the screen."
-
-    e "Another functional unit can synthesize audio on the fly, and play it back through Ren'Py."
-
-    e "The next-generation enhancement system can even replace sections of the address space, to allow larger games."
+    e "It even allows sections of the address space to be replaced, so you can run larger games."
 
     e "The NGES is a work in progress, but I'm excited to show you what it can do. Here goes..."
 
@@ -80,9 +73,15 @@ label start:
     show eileen at center
     with move
 
-    "The background image is by Arcade Perfect, from Wikimedia Commons."
+    show eileen vhappy
 
-    "The music is by Kevin MacLeod, from Incompetech."
+    e "... and now that you've seen that, I invite you to reflect on what day this came out."
+
+    show eileen happy
+
+    "NGES is really the ANESE emulator, by Daniel Prilik, slimmed down and plugged into Ren'Py."
+
+    "The background image is by Arcade Perfect, from Wikimedia Commons. The music is by Kevin MacLeod, from Incompetech."
 
     "Thanks for putting up with this!"
 
