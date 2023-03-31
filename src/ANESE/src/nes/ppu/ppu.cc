@@ -737,9 +737,9 @@ void PPU::cycle() {
       // that way, we can directly pass the framebuffer to our rendering layer
       const uint offset = (256 * 4 * y) + (4 * x);
       #define draw_dot(buf, color) \
-        /* b */ buf[offset + 0] = color.b; \
+        /* b */ buf[offset + 0] = color.r; \
         /* g */ buf[offset + 1] = color.g; \
-        /* r */ buf[offset + 2] = color.r; \
+        /* r */ buf[offset + 2] = color.b; \
         /* a */ buf[offset + 3] = color.a;
 
       draw_dot(framebuffer,     this->palette[nes_color     % 64]);
