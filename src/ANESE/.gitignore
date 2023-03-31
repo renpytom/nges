@@ -1,0 +1,17 @@
+# Don't commit retail ROMs
+roms/retail/*
+
+# macOS
+.DS_Store
+
+# build and debugging artifacts
+/bin
+/build*
+/anese.dSYM
+*.aps
+*.sav
+*.state
+
+# macOS bundle stuff
+/resources/ANESE.app/Contents/MacOS/anese
+/resources/ANESE.app/Contents/Frameworks/libSDL2-2.0.0.dylib
