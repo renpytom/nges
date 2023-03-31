@@ -17,32 +17,73 @@ screen nges_example():
         nearest True
         align (0.5, 0.1)
 
+    frame:
+        xalign 1.0
+        xoffset -30
+        yalign 0.1
+        padding (40, 20)
+
+        vbox:
+
+            text "Controls"
+            null height 10
+
+            text "Arrow Keys: Move"
+            text "Z: Button A"
+            text "X: Button B"
+            text "Enter: Start"
+            text "Right Shift: Select"
+
+            null height 25
+
+            textbutton "Done" action [ With(dissolve), Return(True) ]
+
+
 # The game starts here.
 
 label start:
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+    play music magic_escape_room
 
-    scene bg room
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
-
+    scene bg arcade
     show eileen happy
 
-    # These display lines of dialogue.
+    e "Hello, everyone, and welcome to the big annoucement!"
 
-    e "You've created a new Ren'Py game."
+    e "Today, I'm announcing the Next-Generation Enhancement System, which we're calling NGES for short."
 
+    e "Ren'Py is great at making visual novels, but sometimes you want some minigames in your game."
 
-    call screen nges_example()
+    e "The tutorial has an example of writing minigames in Python - but that's not the only way to do it. At least, not anymore."
 
+    e "The next-generation enhancement system lets you run minigames inside a virtual machine inside Ren'Py."
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+    e "This virtual machine uses an 8 bit bytecode that can be targeted by a variety of languages and tools."
 
-    # This ends the game.
+    e "The virtual machine uses memory-mapped I/O to access a functional unit that can display tile grids (like maps). It also emulates sprites you can move around the screen."
+
+    e "Another functional unit can synthesize audio on the fly, and play it back through Ren'Py."
+
+    e "The next-generation enhancement system can even replace sections of the address space, to allow larger games."
+
+    e "The NGES is a work in progress, but I'm excited to show you what it can do. Here goes..."
+
+    stop music fadeout 0.5
+    show eileen at left
+    with move
+
+    call screen nges_example() with dissolve
+    pause .5
+
+    play music magic_escape_room
+
+    show eileen at center
+    with move
+
+    "The background image is by Arcade Perfect, from Wikimedia Commons."
+
+    "The music is by Kevin MacLeod, from Incompetech."
+
+    "Thanks for putting up with this!"
 
     return
