@@ -58,7 +58,6 @@ build_all() {
 }
 
 build_all linux-x86_64 so
-exit
 build_all windows-x86_64 dll
 build_all mac-x86_64 dylib
 build_all mac-arm64 dylib
