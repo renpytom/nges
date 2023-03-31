@@ -6,6 +6,17 @@
 define e = Character("Eileen")
 
 
+label main_menu:
+    return
+
+
+screen nges_example():
+    default d = nges.NGES("game.nes")
+    add d at transform:
+        zoom 2
+        nearest True
+        align (0.5, 0.1)
+
 # The game starts here.
 
 label start:
@@ -25,6 +36,10 @@ label start:
     # These display lines of dialogue.
 
     e "You've created a new Ren'Py game."
+
+
+    call screen nges_example()
+
 
     e "Once you add a story, pictures, and music, you can release it to the world!"
 

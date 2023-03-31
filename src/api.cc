@@ -1,3 +1,4 @@
+#include <string.h>
 #include <time.h>
 #include "nes/nes.h"
 #include "nes/cartridge/parse_rom.h"
@@ -16,6 +17,7 @@ static NES_Params params = {
 NES nes(params);
 
 /* The ROM file. */
+unsigned char *rom_data;
 ROM_File *rom_file;
 Mapper *mapper;
 
@@ -39,7 +41,7 @@ extern "C" void init() {
 *
 * Returns 0 on success, -1 on failure.
 */
-extern "C" int load_rom(void *rom_data, unsigned int rom_size) {
+extern "C" int load_rom(void *data, unsigned int size) {
 
     nes.removeCartridge();
 
@@ -48,13 +50,20 @@ extern "C" int load_rom(void *rom_data, unsigned int rom_size) {
         mapper = NULL;
     }
 
-
     if (rom_file) {
         delete rom_file;
         rom_file = NULL;
     }
 
-    rom_file = parseROM((u8 *) rom_data, rom_size);
+    if (data) {
+        delete[] rom_data;
+        rom_data = NULL;
+    }
+
+    rom_data = new unsigned char[size];
+    memcpy((void *) rom_data, data, size);
+
+    rom_file = parseROM((u8 *) rom_data, size);
 
     if (!rom_file) {
         return -1;
@@ -104,7 +113,9 @@ static void write_sample(float sample) {
 }
 
 /* Steps to the next frame. */
-extern "C" void step_frame() {
+extern "C" void step() {
+
+    int limit = 3;
 
     while ((AUDIO_QUEUE_SIZE - samples_in_queue()) > FILL_THRESHOLD) {
         nes.step_frame();
@@ -116,6 +127,10 @@ extern "C" void step_frame() {
 
         for (uint i = 0; i < sample_count; i++) {
             write_sample(samples[i]);
+        }
+
+        if (--limit == 0) {
+            break;
         }
     }
 }
